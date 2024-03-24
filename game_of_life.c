@@ -82,6 +82,7 @@ int main(void)
         }
 
     } while (death == 0);
+
     clear();
     if (count != VAMPIRE_FIN)
     {
@@ -133,7 +134,12 @@ void input_start_matrix(char **matrix)
             }
         }
     }
-    freopen("/dev/tty", "r", stdin);
+    // freopen("/dev/tty", "r", stdin);
+    if (freopen("/dev/tty", "r", stdin) == NULL)
+    {
+        fprintf(stderr, "Unable to redirect stdin from file\n");
+        exit(1);
+    }
 }
 
 void output_matrix(char **matrix)
